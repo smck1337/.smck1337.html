@@ -1,0 +1,19 @@
+var setLevel = -1; //change value to needed level (disabling increasing)
+var threads = 50; //(higher number - faster increasing, min. 1, max. 1000)
+var level = parseInt(document.getElementsByClassName("friendPlayerLevelNum")[0].innerText);
+var counter = setInterval(function(){
+document.getElementsByClassName("friendPlayerLevelNum")[0].innerText = level;
+document.getElementsByClassName("friendPlayerLevel")[0].classList.value = "friendPlayerLevel" + " " + LevelClass(level);
+level++;
+if (setLevel>0) 
+{
+document.getElementsByClassName("friendPlayerLevelNum")[0].innerText = setLevel;
+document.getElementsByClassName("friendPlayerLevel")[0].classList.value = "friendPlayerLevel" + " " + LevelClass(setLevel);
+clearInterval(counter);
+};
+},1000/threads);
+function LevelClass(lvl) {
+if(lvl>=2000) return "lvl_2000";
+if(lvl<100) return "lvl_"+parseInt(lvl/10)*10;
+if(lvl>=100) return "lvl_"+parseInt(lvl/100)*100+" lvl_plus_"+parseInt(parseInt(lvl%100)/10)*10;
+}
